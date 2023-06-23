@@ -1,5 +1,5 @@
 # Splunk-investigation
-Investigating suspicious behaviour using Splunk
+Investigating suspicious behaviour using Splunk.
 
 ---
 
