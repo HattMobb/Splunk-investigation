@@ -46,3 +46,27 @@ It can be seen that only 1 user has been using Powershell in the given time peri
 
 ![image](https://github.com/HattMobb/Splunk-investigation/assets/134090089/233b457b-be44-4bd3-b8bd-ce90557d4c40)
 
+Relevant Powershell commands have the EventID of 4013 so searching for this will provide the number of instances:
+
+
+![Screenshot 2023-06-22 130055](https://github.com/HattMobb/Splunk-investigation/assets/134090089/3f27bc18-20e6-4d25-b2fa-4537e0f9bfa6)
+
+---
+
+![image](https://github.com/HattMobb/Splunk-investigation/assets/134090089/8d8ae9d8-4505-49a0-939f-772dd5488fb6)
+
+This one was slightly trickier. 
+
+First, I had to find a suspicious Powershell command (note the use of encoding and using the command to access web pages):
+
+![Screenshot 2023-06-22 132328](https://github.com/HattMobb/Splunk-investigation/assets/134090089/e9c3eb42-aa9c-4226-8508-206d096bb6c0)
+
+Once I had the encoded command I used CyberChef to decode it, revealing a hashed address and `/news.php` segment of a website.
+
+![Screenshot 2023-06-22 132748](https://github.com/HattMobb/Splunk-investigation/assets/134090089/3845711d-4752-479e-9588-be16b7f54eb6)
+
+I took the hash and used cyberchef to reverse it to reveal the address:
+
+![Screenshot 2023-06-22 132806](https://github.com/HattMobb/Splunk-investigation/assets/134090089/0d368bb2-0097-42b9-a178-74668fc7c265)
+
+The final address that the suspect accessed is ` http://10.10.10.5/news.php `
